@@ -54,7 +54,7 @@ jobs:
         mkdir -p validation-reports
         robot report --input automobile_merged.ttl \
           --format tsv \
-          --output validation-reports/report.tsv || (echo "::warning::ROBOT report generation had issues"; exit 0)
+          --output validation-reports/report.tsv || (echo "::warning::ROBOT report generation had issues";)
         [ -f validation-reports/report.tsv ] || echo "::warning::No report.tsv generated"
 
     - name: Run ROBOT verify
@@ -64,7 +64,7 @@ jobs:
           mkdir -p validation-reports/verify
           robot verify --input automobile_merged.ttl \
             --queries sparql/validation_queries/*.rq \
-            --output-dir validation-reports/verify/ || (echo "::warning::ROBOT verify encountered issues"; exit 1)
+            --output-dir validation-reports/verify/ || (echo "::error::ROBOT verify encountered issues"; exit 1)
         else
           echo "::notice::No validation queries found in sparql/validation_queries/"
         fi
