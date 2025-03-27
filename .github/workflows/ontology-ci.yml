@@ -20,11 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         apk update
-        apk add --no-cache bash python3 py3-pip python3-dev gcc musl-dev openjdk17-jre wget coreutils
-      
-        # Upgrade pip to avoid outdated issues
-        pip3 install --no-cache-dir --upgrade pip
-        pip3 install --no-cache-dir pandas
+        apk add --no-cache bash python3 py3-pip python3-dev gcc musl-dev openjdk17-jre wget coreutils py3-pandas  
 
         # Download and install ROBOT
         wget https://github.com/ontodev/robot/releases/latest/download/robot.jar -O /usr/local/bin/robot.jar
