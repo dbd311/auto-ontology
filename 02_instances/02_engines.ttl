@@ -1,0 +1,139 @@
+@prefix : <http://automobile.org/auto#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+### SWEDISH ENGINES ###
+
+# Volvo
+:Volvo_B4204T27 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 250 ;
+    :torque 350 ;
+    :displacement 2.0 ;
+    :cylinders 4 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :Volvo .
+
+:Volvo_D5 a :Engine ;
+    :engineType "Diesel" ;
+    :horsepower 235 ;
+    :torque 480 ;
+    :displacement 2.4 ;
+    :cylinders 5 ;
+    :fuelType "Diesel" ;
+    :manufacturedBy :Volvo .
+
+# Koenigsegg
+:Koenigsegg_TFGHV8 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 1600 ;
+    :torque 1500 ;
+    :displacement 5.0 ;
+    :cylinders 8 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :Koenigsegg .
+
+### GERMAN ENGINES ###
+
+# BMW
+:BMW_B58 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 382 ;
+    :torque 500 ;
+    :displacement 3.0 ;
+    :cylinders 6 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :BMW .
+
+:BMW_S63 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 617 ;
+    :torque 553 ;
+    :displacement 4.4 ;
+    :cylinders 8 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :BMW .
+
+# Mercedes
+:Mercedes_M139 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 416 ;
+    :torque 500 ;
+    :displacement 2.0 ;
+    :cylinders 4 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :Mercedes .
+
+### BRITISH ENGINES ###
+
+# Jaguar
+:Jaguar_AJ126 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 340 ;
+    :torque 450 ;
+    :displacement 3.0 ;
+    :cylinders 6 ;
+    :fuelType "Petrol" ;
+    :hasSupercharger true ;
+    :manufacturedBy :Jaguar .
+
+# Aston Martin
+:AstonMartin_AE31 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 535 ;
+    :torque 620 ;
+    :displacement 5.2 ;
+    :cylinders 12 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :AstonMartin .
+
+### AMERICAN ENGINES ###
+
+# Ford
+:Ford_Ecoboost27 a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 325 ;
+    :torque 400 ;
+    :displacement 2.7 ;
+    :cylinders 6 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :Ford .
+
+# Tesla
+:Tesla_PM3_Drivetrain a :Engine ;
+    :engineType "Electric" ;
+    :horsepower 450 ;
+    :torque 471 ;
+    :batteryCapacity "82 kWh" ;
+    :fuelType "Electric" ;
+    :manufacturedBy :Tesla .
+
+### FRENCH ENGINES ###
+
+# Peugeot
+:Peugeot_EB2ADT a :Engine ;
+    :engineType "Gasoline" ;
+    :horsepower 130 ;
+    :torque 230 ;
+    :displacement 1.2 ;
+    :cylinders 3 ;
+    :fuelType "Petrol" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :Peugeot .
+
+# Renault
+:Renault_Energy_F1 a :Engine ;
+    :engineType "Hybrid" ;
+    :horsepower 1000 ;
+    :torque 600 ;
+    :displacement 1.6 ;
+    :cylinders 6 ;
+    :fuelType "Petrol-Electric" ;
+    :hasTurbocharger true ;
+    :manufacturedBy :Renault .
