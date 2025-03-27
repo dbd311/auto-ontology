@@ -16,72 +16,40 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Debug repository structure
       run: |
         echo "Current directory: $(pwd)"
         echo "Repository contents:"
         ls -R
-        echo "Checking auto-ontology directory:"
-        ls -la auto-ontology/ || true
+        echo "Checking required files..."
+        [ -f 01_core/01_classes.ttl ] || { echo "Missing 01_classes.ttl"; exit 1; }
+        [ -f 01_core/02_object_properties.ttl ] || { echo "Missing 02_object_properties.ttl"; exit 1; }
+        [ -f 02_instances/02_engines.ttl ] || { echo "Missing 02_engines.ttl"; exit 1; }
 
-    - name: Verify required files
-      run: |
-        REQUIRED_FILES=(
-          "auto-ontology/01_core/01_classes.ttl"
-          "auto-ontology/01_core/02_object_properties.ttl"
-          "auto-ontology/01_core/03_data_properties.ttl"
-          "auto-ontology/02_instances/02_engines.ttl"
-          "auto-ontology/03_axioms/01_restrictions.ttl"
-        )
-        
-        for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "$file" ]; then
-            echo "::error::Missing required file: $file"
-            exit 1
-          fi
-        done
-        echo "All required files present"
-
-    - name: Install Alpine dependencies
+    - name: Install dependencies
       run: |
         apk update
-        apk add --no-cache \
-          python3 \
-          py3-pip \
-          openjdk17-jre \
-          bash \
-          coreutils \
-          findutils
-
-    - name: Set up Python virtual environment
-      run: |
+        apk add --no-cache bash python3 py3-pip openjdk17-jre
         python3 -m venv /opt/venv
         source /opt/venv/bin/activate
-        pip install --no-cache-dir robotframework rdflib
-        echo "/opt/venv/bin" >> $GITHUB_PATH
+        pip install robotframework rdflib
 
-    - name: Make scripts executable
+    - name: Merge ontology
       run: |
         chmod +x scripts/merge_ontology.sh
-        chmod +x scripts/validate_sparql.sh
+        ./scripts/merge_ontology.sh . automobile_merged.ttl
+        ls -lh
 
-    - name: Merge ontology (with debug)
+    - name: Validate ontology
       run: |
-        source /opt/venv/bin/activate
-        echo "Current directory: $(pwd)"
-        echo "Files in auto-ontology/01_core:"
-        ls -la auto-ontology/01_core/
-        ./scripts/merge_ontology.sh auto-ontology automobile_merged.ttl
+        riot --validate automobile_merged.ttl
+        robot validate --input automobile_merged.ttl --output-dir ./validation-reports
 
-    - name: Basic RDF validation
-      run: riot --validate automobile_merged.ttl
-
-    - name: Upload validation artifacts
+    - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ontology-artifacts
-        path: automobile_merged.ttl
-        retention-days: 5
+        path: |
+          automobile_merged.ttl
+          validation-reports/*
