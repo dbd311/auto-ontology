@@ -1,56 +1,67 @@
 ### Manufacturers
 :Rolls_Royce a :Manufacturer ;
+    rdfs:label "Rolls-Royce" ;
     :name "Rolls-Royce Motor Cars" ;
     :founded "1906-03-15"^^xsd:date ;
     :headquarters "Goodwood, UK" .
 
 :Bentley a :Manufacturer ;
+    rdfs:label "Bentley" ;
     :name "Bentley Motors" ;
     :founded "1919-01-18"^^xsd:date ;
     :headquarters "Crewe, UK" .
 
 :McLaren a :Manufacturer ;
+    rdfs:label "McLaren" ;
     :name "McLaren Automotive" ;
     :founded "1985-01-01"^^xsd:date ;
     :headquarters "Woking, UK" .
 
 :Aston_Martin a :Manufacturer ;
+    rdfs:label "Aston Martin" ;
     :name "Aston Martin Lagonda" ;
     :founded "1913-01-15"^^xsd:date ;
     :headquarters "Gaydon, UK" .
 
 :Jaguar a :Manufacturer ;
+    rdfs:label "Jaguar" ;
     :name "Jaguar Cars" ;
     :founded "1922-01-01"^^xsd:date ;
     :headquarters "Coventry, UK" .
 
 :Land_Rover a :Manufacturer ;
+    rdfs:label "Land Rover" ;
     :name "Land Rover" ;
     :founded "1948-01-01"^^xsd:date ;
     :headquarters "Whitley, UK" .
 
 :MINI a :Manufacturer ;
+    rdfs:label "MINI" ;
     :name "MINI (BMW Group)" ;
     :founded "1969-01-01"^^xsd:date ;
     :headquarters "Oxford, UK" .
 
 :Lotus a :Manufacturer ;
+    rdfs:label "Lotus" ;
     :name "Lotus Cars" ;
     :founded "1948-01-01"^^xsd:date ;
     :headquarters "Norfolk, UK" .
 
 :TVR a :Manufacturer ;
+    rdfs:label "TVR" ;
     :name "TVR" ;
     :founded "1946-01-01"^^xsd:date ;
     :headquarters "Blackpool, UK" .
 
 :Noble a :Manufacturer ;
+    rdfs:label "Noble" ;
     :name "Noble Automotive" ;
     :founded "1999-01-01"^^xsd:date ;
     :headquarters "Leicester, UK" .
 
 ### Iconic Vehicles
 :McLaren_P1 a :Hypercar ;
+    rdfs:label "McLaren P1" ;
     :modelName "McLaren P1" ;
     :productionYear "2013"^^xsd:gYear ;
     :hasEngine :McLaren_V8_Hybrid .

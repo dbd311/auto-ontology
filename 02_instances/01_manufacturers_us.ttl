@@ -1,56 +1,67 @@
 ### Manufacturers
 :Ford a :Manufacturer ;
+    rdfs:label "Ford" ;
     :name "Ford Motor Company" ;
     :founded "1903-06-16"^^xsd:date ;
     :headquarters "Dearborn, USA" .
 
 :Chevrolet a :Manufacturer ;
+    rdfs:label "Chevrolet" ;
     :name "Chevrolet (General Motors)" ;
     :founded "1911-11-03"^^xsd:date ;
     :headquarters "Detroit, USA" .
 
 :Tesla a :Manufacturer ;
+    rdfs:label "Tesla" ;
     :name "Tesla, Inc." ;
     :founded "2003-07-01"^^xsd:date ;
     :headquarters "Austin, USA" .
 
 :Jeep a :Manufacturer ;
+    rdfs:label "Jeep" ;
     :name "Jeep (Stellantis)" ;
     :founded "1941-01-01"^^xsd:date ;
     :headquarters "Toledo, USA" .
 
 :Rivian a :Manufacturer ;
+    rdfs:label "Rivian" ;
     :name "Rivian Automotive" ;
     :founded "2009-01-01"^^xsd:date ;
     :headquarters "Irvine, USA" .
 
 :Lucid a :Manufacturer ;
+    rdfs:label "Lucid" ;
     :name "Lucid Motors" ;
     :founded "2007-01-01"^^xsd:date ;
     :headquarters "Newark, USA" .
 
 :Dodge a :Manufacturer ;
+    rdfs:label "Dodge" ;
     :name "Dodge (Stellantis)" ;
     :founded "1900-01-01"^^xsd:date ;
     :headquarters "Auburn Hills, USA" .
 
 :Ram a :Manufacturer ;
+    rdfs:label "Ram" ;
     :name "Ram Trucks" ;
     :founded "2009-01-01"^^xsd:date ;
     :headquarters "Auburn Hills, USA" .
 
 :GM a :Manufacturer ;
+    rdfs:label "General Motors" ;
     :name "General Motors" ;
     :founded "1908-09-16"^^xsd:date ;
     :headquarters "Detroit, USA" .
 
 :Hennessey a :Manufacturer ;
+    rdfs:label "Hennessey" ;
     :name "Hennessey Performance Engineering" ;
     :founded "1991-01-01"^^xsd:date ;
     :headquarters "Sealy, USA" .
 
 ### Iconic Vehicles
 :Ford_Mustang_MachE a :ElectricCar ;
+    rdfs:label "Ford Mustang Mach-E" ;
     :modelName "Mustang Mach-E" ;
     :productionYear "2023"^^xsd:gYear ;
     :hasEngine :Ford_Electric_Motor .
