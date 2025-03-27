@@ -43,6 +43,7 @@ jobs:
       continue-on-error: true
       run: |
         mkdir -p validation-reports
+        which robot
         robot report --input automobile_merged.ttl --format tsv --output validation-reports/report.tsv
         
         if find sparql/validation_queries -maxdepth 1 -name "*.rq" | grep -q .; then
