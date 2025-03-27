@@ -33,38 +33,55 @@ jobs:
     - name: Basic RDF validation
       run: riot --validate automobile_merged.ttl
 
-    - name: Create reports directory
-      run: mkdir -p validation-reports
-
     - name: Run ROBOT validation
+      id: robot_validation
       continue-on-error: true
       run: |
-        robot report --input automobile_merged.ttl --output validation-reports/report.json
-        robot verify --input automobile_merged.ttl \
-          --queries sparql/validation_queries/*.rq \
-          --output-dir validation-reports/
-        echo "Validation completed with $(grep -c "level.: \"ERROR\"" validation-reports/report.json || echo 0) errors"
+        mkdir -p validation-reports
+        # Generate report in TSV format (more reliable)
+        robot report --input automobile_merged.ttl --format tsv --output validation-reports/report.tsv
+        
+        # Run SPARQL validation if queries exist
+        if [ -d sparql/validation_queries ] && [ -n "$(ls sparql/validation_queries/*.rq 2>/dev/null)" ]; then
+          robot verify --input automobile_merged.ttl \
+            --queries sparql/validation_queries/*.rq \
+            --output-dir validation-reports/verify/
+        fi
 
-    - name: Verify reports exist
+    - name: Process validation results
       run: |
-        echo "Validation reports:"
-        ls -la validation-reports/
-        [ -f validation-reports/report.json ] || { echo "No report.json found"; exit 1; }
+        echo "Validation artifacts:"
+        find validation-reports -type f -print -exec cat {} \;
+        
+        # Convert TSV report to JSON if needed
+        if [ -f validation-reports/report.tsv ]; then
+          python3 -c "
+import pandas as pd, json
+df = pd.read_csv('validation-reports/report.tsv', sep='\t')
+df.to_json('validation-reports/report.json', orient='records')
+"
+        fi
 
-    - name: Upload validation reports
+    - name: Upload validation artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: validation-reports
+        name: validation-artifacts
         path: |
           automobile_merged.ttl
-          validation-reports/*
+          validation-reports/
         retention-days: 7
 
-    - name: Check validation results
-      if: ${{ failure() && steps.robot_validation.outcome == 'failure' }}
+    - name: Check validation status
+      if: ${{ steps.robot_validation.outcome == 'failure' }}
       run: |
-        errors=$(grep -c "level.: \"ERROR\"" validation-reports/report.json || echo 0)
-        if [ "$errors" -gt 0 ]; then
-          echo "::error::Found $errors validation errors"
+        if [ -f validation-reports/report.tsv ]; then
+          errors=$(grep -c "ERROR" validation-reports/report.tsv || echo 0)
+          echo "Found $errors validation errors"
+          if [ "$errors" -gt 0 ]; then
+            echo "::error::Validation failed with $errors errors"
+            exit 1
+          fi
+        else
+          echo "::error::No validation report generated"
           exit 1
         fi
