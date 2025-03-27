@@ -1,56 +1,67 @@
 ### Manufacturers
 :Peugeot a :Manufacturer ;
+    rdfs:label "Peugeot" ;
     :name "Peugeot (Stellantis)" ;
     :founded "1810-01-01"^^xsd:date ;
     :headquarters "Paris, France" .
 
 :Renault a :Manufacturer ;
+    rdfs:label "Renault" ;
     :name "Renault Group" ;
     :founded "1899-01-01"^^xsd:date ;
     :headquarters "Boulogne-Billancourt, France" .
 
 :Citroen a :Manufacturer ;
+    rdfs:label "Citroën" ;
     :name "Citroën (Stellantis)" ;
     :founded "1919-01-01"^^xsd:date ;
     :headquarters "Paris, France" .
 
 :Bugatti a :Manufacturer ;
+    rdfs:label "Bugatti" ;
     :name "Bugatti Automobiles" ;
     :founded "1909-01-01"^^xsd:date ;
     :headquarters "Molsheim, France" .
 
 :Alpine a :Manufacturer ;
+    rdfs:label "Alpine" ;
     :name "Alpine (Renault Group)" ;
     :founded "1955-01-01"^^xsd:date ;
     :headquarters "Dieppe, France" .
 
 :DS_Automobiles a :Manufacturer ;
+    rdfs:label "DS Automobiles" ;
     :name "DS Automobiles" ;
     :founded "2009-01-01"^^xsd:date ;
     :headquarters "Paris, France" .
 
 :Venturi a :Manufacturer ;
+    rdfs:label "Venturi" ;
     :name "Venturi Automobiles" ;
     :founded "1984-01-01"^^xsd:date ;
     :headquarters "Monaco, France" .
 
 :Mobilize a :Manufacturer ;
+    rdfs:label "Mobilize" ;
     :name "Mobilize (Renault Group)" ;
     :founded "2021-01-01"^^xsd:date ;
     :headquarters "Boulogne-Billancourt, France" .
 
 :Ligier a :Manufacturer ;
+    rdfs:label "Ligier" ;
     :name "Ligier Automotive" ;
     :founded "1968-01-01"^^xsd:date ;
     :headquarters "Abbeville, France" .
 
 :Microcar a :Manufacturer ;
+    rdfs:label "Microcar" ;
     :name "Microcar" ;
     :founded "1984-01-01"^^xsd:date ;
     :headquarters "Puy-en-Velay, France" .
 
 ### Iconic Vehicles
 :Bugatti_Chiron a :Hypercar ;
+    rdfs:label "Bugatti Chiron" ;
     :modelName "Bugatti Chiron" ;
     :productionYear "2023"^^xsd:gYear ;
     :hasEngine :Bugatti_W16 .
