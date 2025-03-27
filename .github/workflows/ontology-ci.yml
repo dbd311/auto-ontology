@@ -27,7 +27,7 @@ jobs:
           openjdk17-jre \
           wget
         
-        # Install ROBOT
+        # Install ROBOT 1.9.4 (last version with validate command)
         wget https://github.com/ontodev/robot/releases/download/v1.9.4/robot.jar \
           -O /usr/local/bin/robot.jar
         echo '#!/bin/sh' > /usr/local/bin/robot
@@ -36,23 +36,25 @@ jobs:
 
     - name: Verify files
       run: |
-        echo "Required files:"
         [ -f 01_core/01_classes.ttl ] || { echo "Missing 01_classes.ttl"; exit 1; }
         [ -f 01_core/02_object_properties.ttl ] || { echo "Missing 02_object_properties.ttl"; exit 1; }
         [ -f 02_instances/02_engines.ttl ] || { echo "Missing 02_engines.ttl"; exit 1; }
-        echo "All required files present"
 
     - name: Merge ontology
       run: |
         chmod +x scripts/merge_ontology.sh
         ./scripts/merge_ontology.sh . automobile_merged.ttl
-        ls -lh
 
     - name: Validate with RIOT
       run: riot --validate automobile_merged.ttl
 
     - name: Validate with ROBOT
-      run: robot validate --input automobile_merged.ttl --output-dir ./validation-reports
+      run: |
+        # For newer ROBOT versions use:
+        robot report --input automobile_merged.ttl --output-dir ./validation-reports
+        
+        # OR for ROBOT 1.9.4:
+        robot validate --input automobile_merged.ttl --output-dir ./validation-reports
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
