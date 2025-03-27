@@ -1,0 +1,3 @@
+:MuscleCarRule a owl:Rule ;
+    swrl:body "hasEngine(?car, ?engine) ^ Engine(?engine) ^ cylinders(?engine, 8)" ;
+    swrl:head "MuscleCar(?car)" .

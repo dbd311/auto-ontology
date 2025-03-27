@@ -1,0 +1,64 @@
+@prefix : <http://example.org/auto#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+### Manufacturers
+:Volvo a :Manufacturer ;
+    :name "Volvo Cars" ;
+    :founded "1927-04-14"^^xsd:date ;
+    :headquarters "Gothenburg, Sweden" .
+
+:Saab a :Manufacturer ;
+    :name "Saab Automobile" ;
+    :founded "1945-06-08"^^xsd:date ;
+    :headquarters "Trollhättan, Sweden" .
+
+:Koenigsegg a :Manufacturer ;
+    :name "Koenigsegg Automotive" ;
+    :founded "1994-01-01"^^xsd:date ;
+    :headquarters "Ängelholm, Sweden" .
+
+:Scania a :Manufacturer ;
+    :name "Scania AB" ;
+    :founded "1891-01-01"^^xsd:date ;
+    :headquarters "Södertälje, Sweden" .
+
+:Polestar a :Manufacturer ;
+    :name "Polestar" ;
+    :founded "2017-01-01"^^xsd:date ;
+    :headquarters "Gothenburg, Sweden" .
+
+:Husqvarna_Motorcycles a :Manufacturer ;
+    :name "Husqvarna Motorcycles" ;
+    :founded "1903-01-01"^^xsd:date ;
+    :headquarters "Stockholm, Sweden" .
+
+:NEVS a :Manufacturer ;
+    :name "National Electric Vehicle Sweden" ;
+    :founded "2012-01-01"^^xsd:date ;
+    :headquarters "Trollhättan, Sweden" .
+
+:Uniti a :Manufacturer ;
+    :name "Uniti Sweden" ;
+    :founded "2016-01-01"^^xsd:date ;
+    :headquarters "Lund, Sweden" .
+
+:Caresto a :Manufacturer ;
+    :name "Caresto" ;
+    :founded "2005-01-01"^^xsd:date ;
+    :headquarters "Stockholm, Sweden" .
+
+:Jösse_Car a :Manufacturer ;
+    :name "Jösse Car" ;
+    :founded "2010-01-01"^^xsd:date ;
+    :headquarters "Arvika, Sweden" .
+
+### Iconic Vehicles
+:Volvo_XC90 a :SUV ;
+    :modelName "Volvo XC90" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Volvo_T8_TwinEngine .
+
+:Koenigsegg_Jesko a :Hypercar ;
+    :modelName "Koenigsegg Jesko" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Koenigsegg_V8_TT .

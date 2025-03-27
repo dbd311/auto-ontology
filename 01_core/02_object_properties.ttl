@@ -1,0 +1,39 @@
+### Vehicle Structure
+:hasComponent a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Component ;
+    rdfs:label "has component" .
+
+:hasDrivetrain a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasComponent ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Drivetrain ;
+    rdfs:label "has drivetrain" .
+
+:hasSuspension a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasComponent ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Suspension ;
+    rdfs:label "has suspension" .
+
+### Manufacturing
+:manufacturedBy a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Manufacturer ;
+    rdfs:label "manufactured by" .
+
+:usesMaterial a owl:ObjectProperty ;
+    rdfs:domain :Component ;
+    rdfs:range :Material ;
+    rdfs:label "uses material" .
+
+### Performance
+:hasPerformanceRating a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :PerformanceRating ;
+    rdfs:label "has performance rating" .
+
+:testedAt a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :TestFacility ;
+    rdfs:label "tested at" .

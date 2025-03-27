@@ -1,0 +1,65 @@
+### Volvo
+:Volvo_XC90_T8 a :SUV ;
+    :modelName "XC90 T8 Recharge" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Volvo_T8_TwinEngine ;
+    :hasManufacturer :Volvo .
+
+:Volvo_S60_Polestar a :Sedan ;
+    :modelName "S60 Polestar Engineered" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Volvo_Polestar_DrivE ;
+    :hasManufacturer :Volvo .
+
+### Koenigsegg
+:Koenigsegg_Jesko_Attack a :Hypercar ;
+    :modelName "Jesko Attack" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Koenigsegg_V8_TT ;
+    :hasManufacturer :Koenigsegg .
+
+:Koenigsegg_Gemera a :Hypercar ;
+    :modelName "Gemera" ;
+    :productionYear "2024"^^xsd:gYear ;
+    :hasEngine :Koenigsegg_TFGHV8 ;
+    :hasManufacturer :Koenigsegg .
+
+### Polestar
+:Polestar_2 a :ElectricCar ;
+    :modelName "Polestar 2" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Polestar_Electric_Drivetrain ;
+    :hasManufacturer :Polestar .
+
+:Polestar_3 a :ElectricSUV ;
+    :modelName "Polestar 3" ;
+    :productionYear "2024"^^xsd:gYear ;
+    :hasEngine :Polestar_DualMotor ;
+    :hasManufacturer :Polestar .
+
+### Saab (Historic)
+:Saab_9_3_Viggen a :Sedan ;
+    :modelName "9-3 Viggen" ;
+    :productionYear "2000"^^xsd:gYear ;
+    :hasEngine :Saab_B234R ;
+    :hasManufacturer :Saab .
+
+:Saab_900_Turbo a :Coupe ;
+    :modelName "900 Turbo" ;
+    :productionYear "1985"^^xsd:gYear ;
+    :hasEngine :Saab_B201 ;
+    :hasManufacturer :Saab .
+
+### NEVS
+:NEVS_9_3_EV a :ElectricSedan ;
+    :modelName "9-3 EV" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :NEVS_Electric_Drivetrain ;
+    :hasManufacturer :NEVS .
+
+### Scania (Commercial)
+:Scania_R450 a :Truck ;
+    :modelName "R450" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Scania_DC13 ;
+    :hasManufacturer :Scania .

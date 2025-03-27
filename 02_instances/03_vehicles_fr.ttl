@@ -1,0 +1,65 @@
+### Bugatti
+:Bugatti_Chiron_Super_Sport a :Hypercar ;
+    :modelName "Chiron Super Sport" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Bugatti_W16 ;
+    :hasManufacturer :Bugatti .
+
+:Bugatti_Mistral a :Hypercar ;
+    :modelName "Mistral" ;
+    :productionYear "2024"^^xsd:gYear ;
+    :hasEngine :Bugatti_W16 ;
+    :hasManufacturer :Bugatti .
+
+### Peugeot
+:Peugeot_508_PSE a :Sedan ;
+    :modelName "508 PSE" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Peugeot_Hybrid ;
+    :hasManufacturer :Peugeot .
+
+:Peugeot_e208 a :ElectricHatchback ;
+    :modelName "e-208" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Peugeot_Electric ;
+    :hasManufacturer :Peugeot .
+
+### Renault
+:Renault_Megane_E_Tech a :ElectricSUV ;
+    :modelName "Megane E-Tech" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Renault_Electric ;
+    :hasManufacturer :Renault .
+
+:Renault_Alpine_A110 a :SportsCar ;
+    :modelName "Alpine A110" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Renault_1.8T ;
+    :hasManufacturer :Renault .
+
+### Citroën
+:Citroen_C5_X a :Sedan ;
+    :modelName "C5 X" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Citroen_Hybrid ;
+    :hasManufacturer :Citroen .
+
+:Citroen_ami a :Microcar ;
+    :modelName "ami" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Citroen_Electric ;
+    :hasManufacturer :Citroen .
+
+### DS Automobiles
+:DS_9 a :LuxurySedan ;
+    :modelName "DS 9" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :DS_Hybrid ;
+    :hasManufacturer :DS_Automobiles .
+
+### Alpine
+:Alpine_A110S a :SportsCar ;
+    :modelName "A110 S" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Alpine_1.8T ;
+    :hasManufacturer :Alpine .

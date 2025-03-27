@@ -1,0 +1,56 @@
+### Manufacturers
+:Peugeot a :Manufacturer ;
+    :name "Peugeot (Stellantis)" ;
+    :founded "1810-01-01"^^xsd:date ;
+    :headquarters "Paris, France" .
+
+:Renault a :Manufacturer ;
+    :name "Renault Group" ;
+    :founded "1899-01-01"^^xsd:date ;
+    :headquarters "Boulogne-Billancourt, France" .
+
+:Citroen a :Manufacturer ;
+    :name "Citroën (Stellantis)" ;
+    :founded "1919-01-01"^^xsd:date ;
+    :headquarters "Paris, France" .
+
+:Bugatti a :Manufacturer ;
+    :name "Bugatti Automobiles" ;
+    :founded "1909-01-01"^^xsd:date ;
+    :headquarters "Molsheim, France" .
+
+:Alpine a :Manufacturer ;
+    :name "Alpine (Renault Group)" ;
+    :founded "1955-01-01"^^xsd:date ;
+    :headquarters "Dieppe, France" .
+
+:DS_Automobiles a :Manufacturer ;
+    :name "DS Automobiles" ;
+    :founded "2009-01-01"^^xsd:date ;
+    :headquarters "Paris, France" .
+
+:Venturi a :Manufacturer ;
+    :name "Venturi Automobiles" ;
+    :founded "1984-01-01"^^xsd:date ;
+    :headquarters "Monaco, France" .
+
+:Mobilize a :Manufacturer ;
+    :name "Mobilize (Renault Group)" ;
+    :founded "2021-01-01"^^xsd:date ;
+    :headquarters "Boulogne-Billancourt, France" .
+
+:Ligier a :Manufacturer ;
+    :name "Ligier Automotive" ;
+    :founded "1968-01-01"^^xsd:date ;
+    :headquarters "Abbeville, France" .
+
+:Microcar a :Manufacturer ;
+    :name "Microcar" ;
+    :founded "1984-01-01"^^xsd:date ;
+    :headquarters "Puy-en-Velay, France" .
+
+### Iconic Vehicles
+:Bugatti_Chiron a :Hypercar ;
+    :modelName "Bugatti Chiron" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Bugatti_W16 .

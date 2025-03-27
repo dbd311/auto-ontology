@@ -1,0 +1,4 @@
+:engineType a owl:DatatypeProperty ;
+    rdfs:domain :Engine ;
+    rdfs:range xsd:string ;
+    rdfs:label "engine type" .

@@ -1,0 +1,64 @@
+### Rolls-Royce
+:RollsRoyce_Phantom a :LuxurySedan ;
+    :modelName "Phantom" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :BMW_V12 ;
+    :hasManufacturer :Rolls_Royce .
+
+:RollsRoyce_Cullinan a :LuxurySUV ;
+    :modelName "Cullinan" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :BMW_V12 ;
+    :hasManufacturer :Rolls_Royce .
+
+### Bentley
+:Bentley_Continental_GT a :GrandTourer ;
+    :modelName "Continental GT" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Bentley_W12 ;
+    :hasManufacturer :Bentley .
+
+:Bentley_Bentayga a :LuxurySUV ;
+    :modelName "Bentayga" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Bentley_V8 ;
+    :hasManufacturer :Bentley .
+
+### McLaren
+:McLaren_720S a :Supercar ;
+    :modelName "720S" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :McLaren_V8_TT ;
+    :hasManufacturer :McLaren .
+
+:McLaren_Artura a :HybridSupercar ;
+    :modelName "Artura" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :McLaren_V6_Hybrid ;
+    :hasManufacturer :McLaren .
+
+### Aston Martin
+:AstonMartin_DB11 a :GrandTourer ;
+    :modelName "DB11" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :AstonMartin_V12 ;
+    :hasManufacturer :Aston_Martin .
+
+:AstonMartin_Valkyrie a :Hypercar ;
+    :modelName "Valkyrie" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Cosworth_V12_Hybrid ;
+    :hasManufacturer :Aston_Martin .
+
+### Jaguar
+:Jaguar_FType a :SportsCar ;
+    :modelName "F-Type" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Jaguar_V8 ;
+    :hasManufacturer :Jaguar .
+
+:Jaguar_IPace a :ElectricSUV ;
+    :modelName "I-Pace" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Jaguar_Electric_Drivetrain ;
+    :hasManufacturer :Jaguar .

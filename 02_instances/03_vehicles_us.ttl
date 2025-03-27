@@ -1,0 +1,65 @@
+### Tesla
+:Tesla_Model_S_Plaid a :ElectricSedan ;
+    :modelName "Model S Plaid" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Tesla_TriMotor ;
+    :hasManufacturer :Tesla .
+
+:Tesla_Cybertruck a :ElectricTruck ;
+    :modelName "Cybertruck" ;
+    :productionYear "2024"^^xsd:gYear ;
+    :hasEngine :Tesla_QuadMotor ;
+    :hasManufacturer :Tesla .
+
+### Ford
+:Ford_Mustang_MachE a :ElectricSUV ;
+    :modelName "Mustang Mach-E" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Ford_Electric_Drivetrain ;
+    :hasManufacturer :Ford .
+
+:Ford_F150_Lightning a :ElectricTruck ;
+    :modelName "F-150 Lightning" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Ford_DualMotor ;
+    :hasManufacturer :Ford .
+
+### Chevrolet
+:Chevrolet_Corvette_C8 a :SportsCar ;
+    :modelName "Corvette C8" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Chevy_LT2_V8 ;
+    :hasManufacturer :Chevrolet .
+
+:Chevrolet_Bolt_EUV a :ElectricSUV ;
+    :modelName "Bolt EUV" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Chevy_Electric_Drivetrain ;
+    :hasManufacturer :Chevrolet .
+
+### Rivian
+:Rivian_R1T a :ElectricTruck ;
+    :modelName "R1T" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Rivian_QuadMotor ;
+    :hasManufacturer :Rivian .
+
+:Rivian_R1S a :ElectricSUV ;
+    :modelName "R1S" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Rivian_QuadMotor ;
+    :hasManufacturer :Rivian .
+
+### Lucid
+:Lucid_Air a :ElectricSedan ;
+    :modelName "Air" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Lucid_DualMotor ;
+    :hasManufacturer :Lucid .
+
+### Hennessey
+:Hennessey_Venom_F5 a :Hypercar ;
+    :modelName "Venom F5" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Hennessey_Fury_V8 ;
+    :hasManufacturer :Hennessey .

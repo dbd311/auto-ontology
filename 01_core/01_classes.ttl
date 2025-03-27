@@ -1,0 +1,22 @@
+@prefix : <http://automobile.org/auto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .       
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .     
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+:Vehicle a owl:Class ;
+    rdfs:label "Vehicle" ;
+    rdfs:comment "A motorized vehicle for transportation." .
+
+:Car a owl:Class ;
+    rdfs:subClassOf :Vehicle ;
+    rdfs:label "Car" .
+
+:Engine a owl:Class ;
+    rdfs:label "Engine" ;
+    rdfs:comment "Powertrain component of a vehicle." .
+
+:Manufacturer a owl:Class ;
+    rdfs:label "Manufacturer" .

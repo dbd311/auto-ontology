@@ -1,0 +1,56 @@
+### Manufacturers
+:Ford a :Manufacturer ;
+    :name "Ford Motor Company" ;
+    :founded "1903-06-16"^^xsd:date ;
+    :headquarters "Dearborn, USA" .
+
+:Chevrolet a :Manufacturer ;
+    :name "Chevrolet (General Motors)" ;
+    :founded "1911-11-03"^^xsd:date ;
+    :headquarters "Detroit, USA" .
+
+:Tesla a :Manufacturer ;
+    :name "Tesla, Inc." ;
+    :founded "2003-07-01"^^xsd:date ;
+    :headquarters "Austin, USA" .
+
+:Jeep a :Manufacturer ;
+    :name "Jeep (Stellantis)" ;
+    :founded "1941-01-01"^^xsd:date ;
+    :headquarters "Toledo, USA" .
+
+:Rivian a :Manufacturer ;
+    :name "Rivian Automotive" ;
+    :founded "2009-01-01"^^xsd:date ;
+    :headquarters "Irvine, USA" .
+
+:Lucid a :Manufacturer ;
+    :name "Lucid Motors" ;
+    :founded "2007-01-01"^^xsd:date ;
+    :headquarters "Newark, USA" .
+
+:Dodge a :Manufacturer ;
+    :name "Dodge (Stellantis)" ;
+    :founded "1900-01-01"^^xsd:date ;
+    :headquarters "Auburn Hills, USA" .
+
+:Ram a :Manufacturer ;
+    :name "Ram Trucks" ;
+    :founded "2009-01-01"^^xsd:date ;
+    :headquarters "Auburn Hills, USA" .
+
+:GM a :Manufacturer ;
+    :name "General Motors" ;
+    :founded "1908-09-16"^^xsd:date ;
+    :headquarters "Detroit, USA" .
+
+:Hennessey a :Manufacturer ;
+    :name "Hennessey Performance Engineering" ;
+    :founded "1991-01-01"^^xsd:date ;
+    :headquarters "Sealy, USA" .
+
+### Iconic Vehicles
+:Ford_Mustang_MachE a :ElectricCar ;
+    :modelName "Mustang Mach-E" ;
+    :productionYear "2023"^^xsd:gYear ;
+    :hasEngine :Ford_Electric_Motor .

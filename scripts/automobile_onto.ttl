@@ -1,0 +1,117 @@
+..//01_core/01_classes.ttl
+@prefix : <http://automobile.org/auto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .       
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .     
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+:Vehicle a owl:Class ;
+    rdfs:label "Vehicle" ;
+    rdfs:comment "A motorized vehicle for transportation." .
+
+:Car a owl:Class ;
+    rdfs:subClassOf :Vehicle ;
+    rdfs:label "Car" .
+
+:Engine a owl:Class ;
+    rdfs:label "Engine" ;
+    rdfs:comment "Powertrain component of a vehicle." .
+
+:Manufacturer a owl:Class ;
+    rdfs:label "Manufacturer" .
+..//01_core/02_object_properties.ttl
+### Vehicle Structure
+:hasComponent a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Component ;
+    rdfs:label "has component" .
+
+:hasDrivetrain a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasComponent ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Drivetrain ;
+    rdfs:label "has drivetrain" .
+
+:hasSuspension a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasComponent ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Suspension ;
+    rdfs:label "has suspension" .
+
+### Manufacturing
+:manufacturedBy a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :Manufacturer ;
+    rdfs:label "manufactured by" .
+
+:usesMaterial a owl:ObjectProperty ;
+    rdfs:domain :Component ;
+    rdfs:range :Material ;
+    rdfs:label "uses material" .
+
+### Performance
+:hasPerformanceRating a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :PerformanceRating ;
+    rdfs:label "has performance rating" .
+
+:testedAt a owl:ObjectProperty ;
+    rdfs:domain :Vehicle ;
+    rdfs:range :TestFacility ;
+    rdfs:label "tested at" .
+..//01_core/03_data_properties.ttl
+:engineType a owl:DatatypeProperty ;
+    rdfs:domain :Engine ;
+    rdfs:range xsd:string ;
+    rdfs:label "engine type" .
+..//02_instances/01_manufacturers.*.ttl
+..//02_instances/02_engines.ttl
+
+..//02_instances/03_vehicles.*.ttl
+..//03_axioms/01_restrictions.ttl
+:SportsCar a owl:Class ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            :Car
+            [ a owl:Restriction ;
+              owl:onProperty :horsepower ;
+              owl:someValuesFrom [
+                  a rdfs:Datatype ;
+                  owl:onDatatype xsd:integer ;
+                  owl:withRestrictions (
+                      [ xsd:minExclusive 300 ]
+                  )
+              ]
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty :curbWeight ;
+              owl:someValuesFrom [
+                  a rdfs:Datatype ;
+                  owl:onDatatype xsd:decimal ;
+                  owl:withRestrictions (
+                      [ xsd:maxExclusive 1600 ]
+                  )
+              ]
+            ]
+        )
+    ] .
+
+:ElectricCar a owl:Class ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            :Car
+            [ a owl:Restriction ;
+              owl:onProperty :hasEngine ;
+              owl:someValuesFrom [
+                  a owl:Class ;
+                  owl:hasValue :Electric
+              ]
+            ]
+        )
+    ] .    
+..//03_axioms/02_swrl_rules.ttl
+:MuscleCarRule a owl:Rule ;
+    swrl:body "hasEngine(?car, ?engine) ^ Engine(?engine) ^ cylinders(?engine, 8)" ;
+    swrl:head "MuscleCar(?car)" .

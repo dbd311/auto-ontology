@@ -1,0 +1,56 @@
+### Manufacturers
+:Rolls_Royce a :Manufacturer ;
+    :name "Rolls-Royce Motor Cars" ;
+    :founded "1906-03-15"^^xsd:date ;
+    :headquarters "Goodwood, UK" .
+
+:Bentley a :Manufacturer ;
+    :name "Bentley Motors" ;
+    :founded "1919-01-18"^^xsd:date ;
+    :headquarters "Crewe, UK" .
+
+:McLaren a :Manufacturer ;
+    :name "McLaren Automotive" ;
+    :founded "1985-01-01"^^xsd:date ;
+    :headquarters "Woking, UK" .
+
+:Aston_Martin a :Manufacturer ;
+    :name "Aston Martin Lagonda" ;
+    :founded "1913-01-15"^^xsd:date ;
+    :headquarters "Gaydon, UK" .
+
+:Jaguar a :Manufacturer ;
+    :name "Jaguar Cars" ;
+    :founded "1922-01-01"^^xsd:date ;
+    :headquarters "Coventry, UK" .
+
+:Land_Rover a :Manufacturer ;
+    :name "Land Rover" ;
+    :founded "1948-01-01"^^xsd:date ;
+    :headquarters "Whitley, UK" .
+
+:MINI a :Manufacturer ;
+    :name "MINI (BMW Group)" ;
+    :founded "1969-01-01"^^xsd:date ;
+    :headquarters "Oxford, UK" .
+
+:Lotus a :Manufacturer ;
+    :name "Lotus Cars" ;
+    :founded "1948-01-01"^^xsd:date ;
+    :headquarters "Norfolk, UK" .
+
+:TVR a :Manufacturer ;
+    :name "TVR" ;
+    :founded "1946-01-01"^^xsd:date ;
+    :headquarters "Blackpool, UK" .
+
+:Noble a :Manufacturer ;
+    :name "Noble Automotive" ;
+    :founded "1999-01-01"^^xsd:date ;
+    :headquarters "Leicester, UK" .
+
+### Iconic Vehicles
+:McLaren_P1 a :Hypercar ;
+    :modelName "McLaren P1" ;
+    :productionYear "2013"^^xsd:gYear ;
+    :hasEngine :McLaren_V8_Hybrid .

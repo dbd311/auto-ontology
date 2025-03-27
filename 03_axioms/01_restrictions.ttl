@@ -1,0 +1,40 @@
+:SportsCar a owl:Class ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            :Car
+            [ a owl:Restriction ;
+              owl:onProperty :horsepower ;
+              owl:someValuesFrom [
+                  a rdfs:Datatype ;
+                  owl:onDatatype xsd:integer ;
+                  owl:withRestrictions (
+                      [ xsd:minExclusive 300 ]
+                  )
+              ]
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty :curbWeight ;
+              owl:someValuesFrom [
+                  a rdfs:Datatype ;
+                  owl:onDatatype xsd:decimal ;
+                  owl:withRestrictions (
+                      [ xsd:maxExclusive 1600 ]
+                  )
+              ]
+            ]
+        )
+    ] .
+
+:ElectricCar a owl:Class ;
+    owl:equivalentClass [
+        owl:intersectionOf (
+            :Car
+            [ a owl:Restriction ;
+              owl:onProperty :hasEngine ;
+              owl:someValuesFrom [
+                  a owl:Class ;
+                  owl:hasValue :Electric
+              ]
+            ]
+        )
+    ] .    
