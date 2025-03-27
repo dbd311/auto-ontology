@@ -51,20 +51,23 @@ jobs:
             --output-dir validation-reports/verify/
         fi
 
-    - name: Process validation results
+        - name: Process validation results
       run: |
         echo "Validation artifacts:"
         find validation-reports -type f -print -exec cat {} \;
 
         if [ -s validation-reports/report.tsv ]; then
-          python3 -c "
-import pandas as pd, json
+          python3 <<EOF
+import pandas as pd
+import json
+
 df = pd.read_csv('validation-reports/report.tsv', sep='\t')
 df.to_json('validation-reports/report.json', orient='records')
-"
+EOF
         else
           echo "::warning::No validation errors found, skipping JSON conversion."
         fi
+
 
     - name: Upload validation artifacts
       uses: actions/upload-artifact@v4
