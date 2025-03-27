@@ -14,19 +14,21 @@ jobs:
       options: --user root
 
     steps:
-    # Verified action references
     - name: Checkout repository
-      uses: actions/checkout@v4  # Updated to v4
+      uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5  # Updated to v5
-      with:
-        python-version: '3.11'
-
-    - name: Install dependencies
+    - name: Install Alpine dependencies
       run: |
-        apt-get update
-        apt-get install -y python3-pip jena
+        apk update
+        apk add --no-cache \
+          python3 \
+          py3-pip \
+          openjdk17-jre \
+          bash \
+          coreutils
+
+    - name: Install Python packages
+      run: |
         pip install robotframework rdflib
 
     - name: Make scripts executable
@@ -52,9 +54,8 @@ jobs:
       run: |
         ./scripts/validate_sparql.sh automobile_merged.ttl sparql/validation_queries/
 
-    # Verified artifact upload
     - name: Upload validation artifacts
-      uses: actions/upload-artifact@v4  # Updated to v4
+      uses: actions/upload-artifact@v4
       with:
         name: ontology-artifacts
         path: |
@@ -62,10 +63,3 @@ jobs:
           validation-reports/*
           sparql_results/*
         retention-days: 5
-
-    # Only upload docs if successful
-    - name: Upload documentation
-      if: success()
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: docs/
