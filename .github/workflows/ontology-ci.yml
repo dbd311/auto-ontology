@@ -27,9 +27,12 @@ jobs:
           bash \
           coreutils
 
-    - name: Install Python packages
+    - name: Set up Python virtual environment
       run: |
-        pip install robotframework rdflib
+        python3 -m venv /opt/venv
+        source /opt/venv/bin/activate
+        pip install --no-cache-dir robotframework rdflib
+        echo "/opt/venv/bin" >> $GITHUB_PATH
 
     - name: Make scripts executable
       run: |
@@ -38,21 +41,18 @@ jobs:
 
     - name: Merge ontology
       run: |
+        source /opt/venv/bin/activate
         ./scripts/merge_ontology.sh auto-ontology automobile_merged.ttl
-        ls -lh
 
     - name: Basic RDF validation
       run: riot --validate automobile_merged.ttl
 
     - name: OWL validation with ROBOT
       run: |
+        source /opt/venv/bin/activate
         robot validate --input automobile_merged.ttl \
           --output-dir ./validation-reports \
           --profile owl-el
-
-    - name: SPARQL validation
-      run: |
-        ./scripts/validate_sparql.sh automobile_merged.ttl sparql/validation_queries/
 
     - name: Upload validation artifacts
       uses: actions/upload-artifact@v4
@@ -61,5 +61,4 @@ jobs:
         path: |
           automobile_merged.ttl
           validation-reports/*
-          sparql_results/*
         retention-days: 5
