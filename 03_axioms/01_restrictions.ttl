@@ -31,10 +31,7 @@
             :Car
             [ a owl:Restriction ;
               owl:onProperty :hasEngine ;
-              owl:someValuesFrom [
-                  a owl:Class ;
-                  owl:hasValue :Electric
-              ]
+              owl:someValuesFrom :ElectricEngine
             ]
         )
     ] .    

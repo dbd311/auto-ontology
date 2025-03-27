@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# Robust Ontology Merger with Validation
+set -e  # Exit immediately on error
+
+# Ontology Merger with Validation
 
 # Configuration
 INPUT_DIR="${1:-../}"

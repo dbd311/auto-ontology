@@ -18,5 +18,8 @@
     rdfs:label "Engine" ;
     rdfs:comment "Powertrain component of a vehicle." .
 
+:ElectricEngine a owl:Class ;
+    rdfs:subClassOf :Engine .
+
 :Manufacturer a owl:Class ;
     rdfs:label "Manufacturer" .
