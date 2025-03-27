@@ -19,16 +19,21 @@ jobs:
 
     - name: Install dependencies
       run: |
-        apk update
-        apk add --no-cache bash python3 py3-pip openjdk17-jre wget
+        apt-get update
+        apt-get install -y bash python3 python3-pip openjdk-17-jre wget
         wget https://github.com/ontodev/robot/releases/latest/download/robot.jar -O /usr/local/bin/robot.jar
-        echo '#!/bin/sh\njava -jar /usr/local/bin/robot.jar "$@"' > /usr/local/bin/robot
+        printf '#!/bin/sh\nexec java -jar /usr/local/bin/robot.jar "$@"' > /usr/local/bin/robot
         chmod +x /usr/local/bin/robot
 
     - name: Merge ontology
       run: |
-        chmod +x scripts/merge_ontology.sh
-        ./scripts/merge_ontology.sh . automobile_merged.ttl
+        if [ -f scripts/merge_ontology.sh ]; then
+          chmod +x scripts/merge_ontology.sh
+          ./scripts/merge_ontology.sh . automobile_merged.ttl
+        else
+          echo "::error::Merge script not found"
+          exit 1
+        fi
 
     - name: Basic RDF validation
       run: riot --validate automobile_merged.ttl
@@ -38,11 +43,9 @@ jobs:
       continue-on-error: true
       run: |
         mkdir -p validation-reports
-        # Generate report in TSV format (more reliable)
         robot report --input automobile_merged.ttl --format tsv --output validation-reports/report.tsv
         
-        # Run SPARQL validation if queries exist
-        if [ -d sparql/validation_queries ] && [ -n "$(ls sparql/validation_queries/*.rq 2>/dev/null)" ]; then
+        if find sparql/validation_queries -maxdepth 1 -name "*.rq" | grep -q .; then
           robot verify --input automobile_merged.ttl \
             --queries sparql/validation_queries/*.rq \
             --output-dir validation-reports/verify/
@@ -52,14 +55,15 @@ jobs:
       run: |
         echo "Validation artifacts:"
         find validation-reports -type f -print -exec cat {} \;
-        
-        # Convert TSV report to JSON if needed
-        if [ -f validation-reports/report.tsv ]; then
+
+        if [ -s validation-reports/report.tsv ]; then
           python3 -c "
 import pandas as pd, json
 df = pd.read_csv('validation-reports/report.tsv', sep='\t')
 df.to_json('validation-reports/report.json', orient='records')
 "
+        else
+          echo "::warning::No validation errors found, skipping JSON conversion."
         fi
 
     - name: Upload validation artifacts
@@ -76,8 +80,7 @@ df.to_json('validation-reports/report.json', orient='records')
       run: |
         if [ -f validation-reports/report.tsv ]; then
           errors=$(grep -c "ERROR" validation-reports/report.tsv || echo 0)
-          echo "Found $errors validation errors"
-          if [ "$errors" -gt 0 ]; then
+          if (( errors > 0 )); then
             echo "::error::Validation failed with $errors errors"
             exit 1
           fi
