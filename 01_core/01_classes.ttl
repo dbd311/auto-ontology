@@ -6,7 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
-:Vehicle a owl:Class ;
+:Vehicle a owl: ;
     rdfs:label "Vehicle" ;
     rdfs:comment "A motorized vehicle for transportation." .
 
