@@ -17,14 +17,32 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Get full repository history
+        fetch-depth: 0
 
-    - name: Verify ontology files
+    - name: Debug repository structure
       run: |
-        echo "Checking required files..."
-        [ -d auto-ontology/01_core ] || { echo "Missing core directory"; exit 1; }
-        [ -f auto-ontology/01_core/01_classes.ttl ] || { echo "Missing classes file"; exit 1; }
-        [ -f auto-ontology/01_core/02_object_properties.ttl ] || { echo "Missing properties file"; exit 1; }
+        echo "Current directory: $(pwd)"
+        echo "Repository contents:"
+        ls -R
+        echo "Checking auto-ontology directory:"
+        ls -la auto-ontology/ || true
+
+    - name: Verify required files
+      run: |
+        REQUIRED_FILES=(
+          "auto-ontology/01_core/01_classes.ttl"
+          "auto-ontology/01_core/02_object_properties.ttl"
+          "auto-ontology/01_core/03_data_properties.ttl"
+          "auto-ontology/02_instances/02_engines.ttl"
+          "auto-ontology/03_axioms/01_restrictions.ttl"
+        )
+        
+        for file in "${REQUIRED_FILES[@]}"; do
+          if [ ! -f "$file" ]; then
+            echo "::error::Missing required file: $file"
+            exit 1
+          fi
+        done
         echo "All required files present"
 
     - name: Install Alpine dependencies
