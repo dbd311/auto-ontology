@@ -43,4 +43,16 @@ for dir in 01_core 02_instances 03_axioms; do
   done
 done
 
-riot --validate "$OUTPUT_FILE"
+# Validation
+if command -v riot >/dev/null; then
+    echo -e "\nValidating ontology..."
+    if riot --validate "$OUTPUT_FILE"; then
+        echo "Validation successful"            
+    else
+        echo "Validation failed" >&2
+        exit 1
+    fi
+else
+    echo "ERROR: riot is missing. Install riot (Apache Jena) for validation"
+    exit 1
+fi
