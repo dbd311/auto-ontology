@@ -149,3 +149,75 @@
 :PerformanceMetric a owl:Class ;
     rdfs:label "Performance Metric" ;
     rdfs:comment "A measurable standard of vehicle performance." .
+
+### Specialized Electric Vehicle Classes ###
+:ElectricTruck a owl:Class ;
+    rdfs:subClassOf :Truck, :ElectricVehicle ;
+    rdfs:label "Electric Truck" ;
+    rdfs:comment "A truck that uses electric motors for propulsion, typically powered by rechargeable battery packs." .
+
+:ElectricSUV a owl:Class ;
+    rdfs:subClassOf :SUV, :ElectricVehicle ;
+    rdfs:label "Electric SUV" ;
+    rdfs:comment "A sport utility vehicle powered exclusively by electric motors." .
+
+:ElectricSedan a owl:Class ;
+    rdfs:subClassOf :Sedan, :ElectricVehicle ;
+    rdfs:label "Electric Sedan" ;
+    rdfs:comment "A sedan-style passenger car with fully electric powertrain." .
+
+:ElectricHatchback a owl:Class ;
+    rdfs:subClassOf :Hatchback, :ElectricVehicle ;
+    rdfs:label "Electric Hatchback" ;
+    rdfs:comment "A hatchback car with fully electric propulsion system." .
+
+### Performance Vehicle Classes ###
+:HybridSupercar a owl:Class ;
+    rdfs:subClassOf :Supercar ;
+    rdfs:label "Hybrid Supercar" ;
+    rdfs:comment "A supercar combining internal combustion engine with electric motors for enhanced performance." .
+
+:GrandTourer a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "Grand Tourer" ;
+    rdfs:comment "A high-performance luxury automobile designed for long-distance driving with emphasis on comfort." .
+
+### Luxury Vehicle Classes ###
+:LuxurySedan a owl:Class ;
+    rdfs:subClassOf :Sedan ;
+    rdfs:label "Luxury Sedan" ;
+    rdfs:comment "A premium sedan offering high-end features, superior comfort and advanced technology." .
+
+:LuxurySUV a owl:Class ;
+    rdfs:subClassOf :SUV ;
+    rdfs:label "Luxury SUV" ;
+    rdfs:comment "A sport utility vehicle with premium features, high-quality materials and advanced amenities." .
+
+### Component Classes ###
+:Component a owl:Class ;
+    rdfs:label "Component" ;
+    rdfs:comment "A constituent part or element of a vehicle's construction or system." .
+
+:Drivetrain a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Drivetrain" ;
+    rdfs:comment "The group of components that deliver power to the driving wheels, including transmission, differential, driveshafts and axles." .
+
+:Suspension a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Suspension" ;
+    rdfs:comment "The system of springs, shock absorbers and linkages connecting a vehicle to its wheels, allowing relative motion." .
+
+### Manufacturing and Testing Classes ###
+:Material a owl:Class ;
+    rdfs:label "Material" ;
+    rdfs:comment "Substances used in vehicle construction, including metals, composites, plastics and textiles." .
+
+:TestFacility a owl:Class ;
+    rdfs:label "Test Facility" ;
+    rdfs:comment "A specialized location where vehicles or components undergo rigorous testing and evaluation." .
+
+### Performance Evaluation Classes ###
+:PerformanceRating a owl:Class ;
+    rdfs:label "Performance Rating" ;
+    rdfs:comment "An assessment metric evaluating vehicle characteristics such as acceleration, handling, braking and efficiency." .
