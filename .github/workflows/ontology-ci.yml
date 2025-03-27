@@ -21,12 +21,17 @@ jobs:
       run: |
         apk update
         apk add --no-cache bash python3 py3-pip openjdk17-jre wget coreutils
-        
+
+        # Download and install ROBOT
         wget https://github.com/ontodev/robot/releases/latest/download/robot.jar -O /usr/local/bin/robot.jar
-        echo '#!/bin/sh\njava -jar /usr/local/bin/robot.jar "$@"' > /usr/local/bin/robot
+        printf '#!/bin/sh\nexec java -jar /usr/local/bin/robot.jar "$@"\n' > /usr/local/bin/robot
         chmod +x /usr/local/bin/robot
+
         # Verify installation
-        robot --version || (echo "::error::ROBOT installation failed"; exit 1)
+        if ! robot --version; then
+          echo "::error::ROBOT installation failed"
+          exit 1
+        fi
 
     - name: Merge ontology
       run: |
