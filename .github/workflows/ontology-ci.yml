@@ -20,36 +20,49 @@ jobs:
     - name: Install dependencies
       run: |
         apk update
-        apk add --no-cache bash python3 py3-pip openjdk17-jre wget
-        wget https://github.com/ontodev/robot/releases/latest/download/robot.jar -O /usr/local/bin/robot.jar
+        apk add --no-cache bash python3 py3-pip openjdk17-jre wget coreutils
+        # Install specific ROBOT version
+        ROBOT_VERSION=1.9.4
+        wget https://github.com/ontodev/robot/releases/download/v${ROBOT_VERSION}/robot.jar -O /usr/local/bin/robot.jar
         echo '#!/bin/sh\njava -jar /usr/local/bin/robot.jar "$@"' > /usr/local/bin/robot
         chmod +x /usr/local/bin/robot
+        # Verify installation
+        robot --version || (echo "::error::ROBOT installation failed"; exit 1)
 
     - name: Merge ontology
       run: |
         if [ -f scripts/merge_ontology.sh ]; then
           chmod +x scripts/merge_ontology.sh
-          ./scripts/merge_ontology.sh . automobile_merged.ttl
+          ./scripts/merge_ontology.sh . automobile_merged.ttl || (echo "::error::Ontology merge failed"; exit 1)
+          [ -f automobile_merged.ttl ] || (echo "::error::Merged ontology file not created"; exit 1)
         else
-          echo "::error::Merge script not found"
+          echo "::error::Merge script not found at scripts/merge_ontology.sh"
           exit 1
         fi
 
     - name: Basic RDF validation
-      run: riot --validate automobile_merged.ttl
+      run: |
+        riot --validate automobile_merged.ttl || (echo "::error::RDF validation failed"; exit 1)
 
-    - name: Run ROBOT validation
-      id: robot_validation
-      continue-on-error: true
+    - name: Run ROBOT report
+      id: robot_report
       run: |
         mkdir -p validation-reports
-        which robot
-        robot report --input automobile_merged.ttl --format tsv --output validation-reports/report.tsv
-        
-        if find sparql/validation_queries -maxdepth 1 -name "*.rq" | grep -q .; then
+        robot report --input automobile_merged.ttl \
+          --format tsv \
+          --output validation-reports/report.tsv || (echo "::warning::ROBOT report generation had issues"; exit 0)
+        [ -f validation-reports/report.tsv ] || echo "::warning::No report.tsv generated"
+
+    - name: Run ROBOT verify
+      id: robot_verify
+      run: |
+        if [ -d sparql/validation_queries ] && [ -n "$(find sparql/validation_queries -maxdepth 1 -name '*.rq' -print -quit)" ]; then
+          mkdir -p validation-reports/verify
           robot verify --input automobile_merged.ttl \
             --queries sparql/validation_queries/*.rq \
-            --output-dir validation-reports/verify/
+            --output-dir validation-reports/verify/ || (echo "::warning::ROBOT verify encountered issues"; exit 0)
+        else
+          echo "::notice::No validation queries found in sparql/validation_queries/"
         fi
 
     - name: Process validation results
