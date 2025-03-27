@@ -17,23 +17,30 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Debug repository structure
-      run: |
-        echo "Current directory: $(pwd)"
-        echo "Repository contents:"
-        ls -R
-        echo "Checking required files..."
-        [ -f 01_core/01_classes.ttl ] || { echo "Missing 01_classes.ttl"; exit 1; }
-        [ -f 01_core/02_object_properties.ttl ] || { echo "Missing 02_object_properties.ttl"; exit 1; }
-        [ -f 02_instances/02_engines.ttl ] || { echo "Missing 02_engines.ttl"; exit 1; }
-
     - name: Install dependencies
       run: |
         apk update
-        apk add --no-cache bash python3 py3-pip openjdk17-jre
-        python3 -m venv /opt/venv
-        source /opt/venv/bin/activate
-        pip install robotframework rdflib
+        apk add --no-cache \
+          bash \
+          python3 \
+          py3-pip \
+          openjdk17-jre \
+          wget
+        
+        # Install ROBOT
+        wget https://github.com/ontodev/robot/releases/download/v1.9.4/robot.jar \
+          -O /usr/local/bin/robot.jar
+        echo '#!/bin/sh' > /usr/local/bin/robot
+        echo 'java -jar /usr/local/bin/robot.jar "$@"' >> /usr/local/bin/robot
+        chmod +x /usr/local/bin/robot
+
+    - name: Verify files
+      run: |
+        echo "Required files:"
+        [ -f 01_core/01_classes.ttl ] || { echo "Missing 01_classes.ttl"; exit 1; }
+        [ -f 01_core/02_object_properties.ttl ] || { echo "Missing 02_object_properties.ttl"; exit 1; }
+        [ -f 02_instances/02_engines.ttl ] || { echo "Missing 02_engines.ttl"; exit 1; }
+        echo "All required files present"
 
     - name: Merge ontology
       run: |
@@ -41,10 +48,11 @@ jobs:
         ./scripts/merge_ontology.sh . automobile_merged.ttl
         ls -lh
 
-    - name: Validate ontology
-      run: |
-        riot --validate automobile_merged.ttl
-        robot validate --input automobile_merged.ttl --output-dir ./validation-reports
+    - name: Validate with RIOT
+      run: riot --validate automobile_merged.ttl
+
+    - name: Validate with ROBOT
+      run: robot validate --input automobile_merged.ttl --output-dir ./validation-reports
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -53,3 +61,4 @@ jobs:
         path: |
           automobile_merged.ttl
           validation-reports/*
+        retention-days: 5
