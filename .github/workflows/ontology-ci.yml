@@ -20,7 +20,10 @@ jobs:
     - name: Install dependencies
       run: |
         apk update
-        apk add --no-cache bash python3 py3-pip openjdk17-jre wget coreutils
+        apk add --no-cache bash python3 py3-pip python3-dev gcc musl-dev openjdk17-jre wget coreutils
+      
+        # Upgrade pip to avoid outdated issues
+        pip3 install --no-cache-dir --upgrade pip
         pip3 install --no-cache-dir pandas
 
         # Download and install ROBOT
