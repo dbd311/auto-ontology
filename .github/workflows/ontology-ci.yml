@@ -25,20 +25,22 @@ jobs:
           python3 \
           py3-pip \
           openjdk17-jre \
-          wget
+          wget \
+          curl
+
+        # Install latest ROBOT (correct URL)
+        ROBOT_URL=$(curl -s https://api.github.com/repos/ontodev/robot/releases/latest | grep "browser_download_url.*jar" | cut -d '"' -f 4)
+        wget "$ROBOT_URL" -O /usr/local/bin/robot.jar
         
-        # Install latest ROBOT
-        wget https://github.com/ontodev/robot/releases/download/v2.0.0/robot.jar \
-          -O /usr/local/bin/robot.jar
+        # Create robot wrapper script
         echo '#!/bin/sh' > /usr/local/bin/robot
         echo 'java -jar /usr/local/bin/robot.jar "$@"' >> /usr/local/bin/robot
         chmod +x /usr/local/bin/robot
 
-    - name: Verify files
+    - name: Verify installation
       run: |
-        [ -f 01_core/01_classes.ttl ] || { echo "Missing 01_classes.ttl"; exit 1; }
-        [ -f 01_core/02_object_properties.ttl ] || { echo "Missing 02_object_properties.ttl"; exit 1; }
-        [ -f 02_instances/02_engines.ttl ] || { echo "Missing 02_engines.ttl"; exit 1; }
+        robot --version
+        riot --version
 
     - name: Merge ontology
       run: |
@@ -50,16 +52,9 @@ jobs:
 
     - name: Validate with ROBOT
       run: |
-        # Create directory for reports
         mkdir -p validation-reports
-        
-        # Run validation checks
-        robot report --input automobile_merged.ttl \
-          --output validation-reports/report.json
-        
-        robot verify --input automobile_merged.ttl \
-          --queries sparql/validation_queries/*.rq \
-          --output-dir validation-reports/
+        robot report --input automobile_merged.ttl --output validation-reports/report.json
+        robot verify --input automobile_merged.ttl --queries sparql/validation_queries/*.rq --output-dir validation-reports/
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
