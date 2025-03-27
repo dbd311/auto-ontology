@@ -14,6 +14,21 @@
     rdfs:subClassOf :Vehicle ;
     rdfs:label "Car" .
 
+:Truck a owl:Class ;
+    rdfs:subClassOf :Vehicle ;
+    rdfs:label "Truck" ;
+    rdfs:comment "A motor vehicle designed to transport cargo" .
+
+:SUV a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "SUV" ;
+    rdfs:comment "Sport utility vehicle" .
+
+:ElectricVehicle a owl:Class ;
+    rdfs:subClassOf :Vehicle ;
+    rdfs:label "Electric Vehicle" ;
+    rdfs:comment "A vehicle propelled by electric motors" .
+
 :Engine a owl:Class ;
     rdfs:label "Engine" ;
     rdfs:comment "Powertrain component of a vehicle." .
@@ -23,3 +38,99 @@
 
 :Manufacturer a owl:Class ;
     rdfs:label "Manufacturer" .
+
+    ### Vehicle Subclasses ###
+:Sedan a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "Sedan" ;
+    rdfs:comment "A passenger car with separate compartments for engine, passengers, and cargo" .
+
+:LuxurySedan a owl:Class ;
+    rdfs:subClassOf :Sedan ;
+    rdfs:label "Luxury Sedan" .
+
+:ElectricSedan a owl:Class ;
+    rdfs:subClassOf :Sedan, :ElectricVehicle ;
+    rdfs:label "Electric Sedan" .
+
+:Coupe a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "Coupe" ;
+    rdfs:comment "A car with a fixed roof and two doors" .
+
+:SportsCar a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "Sports Car" ;
+    rdfs:comment "A low-built car designed for performance driving" .
+
+:Supercar a owl:Class ;
+    rdfs:subClassOf :SportsCar ;
+    rdfs:label "Supercar" .
+
+:Hypercar a owl:Class ;
+    rdfs:subClassOf :Supercar ;
+    rdfs:label "Hypercar" .
+
+:GrandTourer a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "Grand Tourer" ;
+    rdfs:comment "A high-performance luxury car designed for long-distance driving" .
+
+:Microcar a owl:Class ;
+    rdfs:subClassOf :Car ;
+    rdfs:label "Microcar" ;
+    rdfs:comment "A very small car" .
+
+:LuxurySUV a owl:Class ;
+    rdfs:subClassOf :SUV ;
+    rdfs:label "Luxury SUV" .
+
+:ElectricSUV a owl:Class ;
+    rdfs:subClassOf :SUV, :ElectricVehicle ;
+    rdfs:label "Electric SUV" .
+
+:ElectricTruck a owl:Class ;
+    rdfs:subClassOf :Truck, :ElectricVehicle ;
+    rdfs:label "Electric Truck" .
+
+:ElectricHatchback a owl:Class ;
+    rdfs:subClassOf :Car, :ElectricVehicle ;
+    rdfs:label "Electric Hatchback" .
+
+:HybridSupercar a owl:Class ;
+    rdfs:subClassOf :Supercar ;
+    rdfs:label "Hybrid Supercar" ;
+    rdfs:comment "A supercar with hybrid electric-petroleum propulsion" .
+
+### Component Classes ###
+:Component a owl:Class ;
+    rdfs:label "Component" ;
+    rdfs:comment "A constituent part of a vehicle" .
+
+:Drivetrain a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Drivetrain" ;
+    rdfs:comment "The system that transmits power to the driving wheels" .
+
+:Suspension a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Suspension" ;
+    rdfs:comment "The system of springs, shock absorbers that connects a vehicle to its wheels" .
+
+:ElectricEngine a owl:Class ;
+    rdfs:subClassOf :Component ;
+    rdfs:label "Electric Engine" ;
+    rdfs:comment "An electric motor that provides propulsion" .
+
+### Other Classes ###
+:Material a owl:Class ;
+    rdfs:label "Material" ;
+    rdfs:comment "Substances used to construct vehicle components" .
+
+:TestFacility a owl:Class ;
+    rdfs:label "Test Facility" ;
+    rdfs:comment "A location where vehicles or components are tested" .
+
+:PerformanceRating a owl:Class ;
+    rdfs:label "Performance Rating" ;
+    rdfs:comment "A qualitative or quantitative assessment of vehicle performance" .
