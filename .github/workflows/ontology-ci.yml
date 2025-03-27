@@ -33,24 +33,38 @@ jobs:
     - name: Basic RDF validation
       run: riot --validate automobile_merged.ttl
 
-    - name: Run ROBOT validation (continue on error)
+    - name: Create reports directory
+      run: mkdir -p validation-reports
+
+    - name: Run ROBOT validation
       continue-on-error: true
       run: |
-        mkdir -p validation-reports
         robot report --input automobile_merged.ttl --output validation-reports/report.json
-        robot verify --input automobile_merged.ttl --queries sparql/validation_queries/*.rq --output-dir validation-reports/
-        echo "Validation completed with $(grep -c "level.: \"ERROR\"" validation-reports/report.json) errors"
+        robot verify --input automobile_merged.ttl \
+          --queries sparql/validation_queries/*.rq \
+          --output-dir validation-reports/
+        echo "Validation completed with $(grep -c "level.: \"ERROR\"" validation-reports/report.json || echo 0) errors"
+
+    - name: Verify reports exist
+      run: |
+        echo "Validation reports:"
+        ls -la validation-reports/
+        [ -f validation-reports/report.json ] || { echo "No report.json found"; exit 1; }
 
     - name: Upload validation reports
       uses: actions/upload-artifact@v4
       with:
         name: validation-reports
-        path: validation-reports/
+        path: |
+          automobile_merged.ttl
+          validation-reports/*
         retention-days: 7
 
-    - name: Check for critical errors
+    - name: Check validation results
       if: ${{ failure() && steps.robot_validation.outcome == 'failure' }}
       run: |
-        echo "::warning::Ontology validation failed with errors"
-        echo "Number of errors found: $(grep -c "level.: \"ERROR\"" validation-reports/report.json)"
-        echo "Please check the uploaded validation reports"
+        errors=$(grep -c "level.: \"ERROR\"" validation-reports/report.json || echo 0)
+        if [ "$errors" -gt 0 ]; then
+          echo "::error::Found $errors validation errors"
+          exit 1
+        fi
