@@ -2,7 +2,7 @@ name: Ontology CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main, develop ]
   pull_request:
     branches: [ main ]
 
@@ -14,20 +14,20 @@ jobs:
       options: --user root
 
     steps:
+    # Verified action references
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4  # Updated to v4
 
-    - name: Set up Python (for ROBOT)
-      uses: actions/setup-python@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5  # Updated to v5
       with:
-        python-version: '3.9'
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
         apt-get update
-        apt-get install -y python3-pip
-        pip install robotframework
-        pip install rdflib
+        apt-get install -y python3-pip jena
+        pip install robotframework rdflib
 
     - name: Make scripts executable
       run: |
@@ -52,17 +52,20 @@ jobs:
       run: |
         ./scripts/validate_sparql.sh automobile_merged.ttl sparql/validation_queries/
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+    # Verified artifact upload
+    - name: Upload validation artifacts
+      uses: actions/upload-artifact@v4  # Updated to v4
       with:
         name: ontology-artifacts
         path: |
           automobile_merged.ttl
           validation-reports/*
           sparql_results/*
+        retention-days: 5
 
-    - name: Upload Widoco documentation
+    # Only upload docs if successful
+    - name: Upload documentation
       if: success()
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         path: docs/
