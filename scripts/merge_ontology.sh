@@ -1,8 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 set -eo pipefail
 
 INPUT_DIR="${1:-auto-ontology}"
 OUTPUT_FILE="${2:-automobile_merged.ttl}"
+
+# Verify input directory structure
+verify_file() {
+    [ -f "$1" ] || { echo "Error: Missing required file $1"; exit 1; }
+}
+
+verify_file "$INPUT_DIR/01_core/01_classes.ttl"
+verify_file "$INPUT_DIR/01_core/02_object_properties.ttl"
+verify_file "$INPUT_DIR/01_core/03_data_properties.ttl"
 
 # Create header
 cat > "$OUTPUT_FILE" << 'HEADER'
@@ -20,23 +29,22 @@ cat > "$OUTPUT_FILE" << 'HEADER'
 
 HEADER
 
-# Merge function
-merge_files() {
-    for file in "$@"; do
-        if [ ! -f "$file" ]; then
-            echo "Error: Missing required file $file" >&2
-            exit 1
-        fi
-        echo "# Source: $file" >> "$OUTPUT_FILE"
-        grep -v '^@prefix' "$file" | dos2unix >> "$OUTPUT_FILE"
-        echo -e "\n" >> "$OUTPUT_FILE"
-    done
+# Merge files with verification
+merge_file() {
+    local file="$1"
+    verify_file "$file"
+    echo "# Source: $(basename "$file")" >> "$OUTPUT_FILE"
+    grep -v '^@prefix' "$file" >> "$OUTPUT_FILE"
+    printf "\n\n" >> "$OUTPUT_FILE"
 }
 
 # Merge all components
-merge_files "$INPUT_DIR"/01_core/*.ttl
-merge_files "$INPUT_DIR"/02_instances/*.ttl
-merge_files "$INPUT_DIR"/03_axioms/*.ttl
+for file in "$INPUT_DIR"/01_core/*.ttl \
+            "$INPUT_DIR"/02_instances/*.ttl \
+            "$INPUT_DIR"/03_axioms/*.ttl; do
+    merge_file "$file"
+done
 
 # Validate
-riot --validate "$OUTPUT_FILE"
+riot --validate "$OUTPUT_FILE" || { echo "Validation failed"; exit 1; }
+echo "Ontology merged and validated successfully"

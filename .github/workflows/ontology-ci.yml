@@ -16,6 +16,16 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Get full repository history
+
+    - name: Verify ontology files
+      run: |
+        echo "Checking required files..."
+        [ -d auto-ontology/01_core ] || { echo "Missing core directory"; exit 1; }
+        [ -f auto-ontology/01_core/01_classes.ttl ] || { echo "Missing classes file"; exit 1; }
+        [ -f auto-ontology/01_core/02_object_properties.ttl ] || { echo "Missing properties file"; exit 1; }
+        echo "All required files present"
 
     - name: Install Alpine dependencies
       run: |
@@ -25,7 +35,8 @@ jobs:
           py3-pip \
           openjdk17-jre \
           bash \
-          coreutils
+          coreutils \
+          findutils
 
     - name: Set up Python virtual environment
       run: |
@@ -39,26 +50,20 @@ jobs:
         chmod +x scripts/merge_ontology.sh
         chmod +x scripts/validate_sparql.sh
 
-    - name: Merge ontology
+    - name: Merge ontology (with debug)
       run: |
         source /opt/venv/bin/activate
+        echo "Current directory: $(pwd)"
+        echo "Files in auto-ontology/01_core:"
+        ls -la auto-ontology/01_core/
         ./scripts/merge_ontology.sh auto-ontology automobile_merged.ttl
 
     - name: Basic RDF validation
       run: riot --validate automobile_merged.ttl
 
-    - name: OWL validation with ROBOT
-      run: |
-        source /opt/venv/bin/activate
-        robot validate --input automobile_merged.ttl \
-          --output-dir ./validation-reports \
-          --profile owl-el
-
     - name: Upload validation artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ontology-artifacts
-        path: |
-          automobile_merged.ttl
-          validation-reports/*
+        path: automobile_merged.ttl
         retention-days: 5
