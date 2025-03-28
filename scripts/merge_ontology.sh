@@ -18,15 +18,18 @@ for file in "${required_files[@]}"; do
   fi
 done
 
+# Empty file
+echo "" > "$OUTPUT_FILE"
+
 # Create header
 cat > "$OUTPUT_FILE" << 'HEADER'
-@prefix : <http://automobile.org/auto#> .
+@prefix : <http://automobile.org/auto:#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .       
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .   
+@prefix schema: <https://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
-@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
 
 <http://automobile.org/auto>
     a owl:Ontology ;

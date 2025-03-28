@@ -1,22 +1,17 @@
-@prefix : <http://:mobile.org/auto:#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix swrl: <http://www.w3.org/2003/11/swrl#> .       
-@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .     
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# Import Schema.org's Vehicle ontology
+:ontology a owl:Ontology ;
+    owl:imports <https://schema.org/> ;
+    rdfs:label "Automobile Ontology" ;
+    rdfs:comment "An ontology for automobile vehicles, extending Schema.org." .
 
-### Core Vehicle Classes ###
-:Vehicle a owl:Class ;
-    rdfs:label "Vehicle" ;
-    rdfs:comment "A motorized vehicle for transportation." .
 
 :Car a owl:Class ;
-    rdfs:subClassOf :Vehicle ;
+    rdfs:subClassOf schema:Vehicle ;
     rdfs:label "Car" ;
     rdfs:comment "A passenger vehicle designed for road use." .
 
 :Truck a owl:Class ;
-    rdfs:subClassOf :Vehicle ;
+    rdfs:subClassOf schema:Vehicle ;
     rdfs:label "Truck" ;
     rdfs:comment "A motor vehicle designed to transport cargo." .
 
@@ -27,7 +22,7 @@
 
 ### Electric Vehicle Classes ###
 :ElectricVehicle a owl:Class ;
-    rdfs:subClassOf :Vehicle ;
+    rdfs:subClassOf schema:Vehicle ;
     rdfs:label "Electric Vehicle" ;
     rdfs:comment "A vehicle propelled by one or more electric motors, using energy stored in rechargeable batteries." .
 
@@ -90,17 +85,17 @@
 
 ### Specialized Vehicle Classes ###
 :OffRoadVehicle a owl:Class ;
-    rdfs:subClassOf :Vehicle ;
+    rdfs:subClassOf schema:Vehicle ;
     rdfs:label "Off-Road Vehicle" ;
     rdfs:comment "A vehicle designed to be driven on unpaved surfaces." .
 
 :AutonomousVehicle a owl:Class ;
-    rdfs:subClassOf :Vehicle ;
+    rdfs:subClassOf schema:Vehicle ;
     rdfs:label "Autonomous Vehicle" ;
     rdfs:comment "A vehicle capable of sensing its environment and operating without human involvement." .
 
 :ConceptCar a owl:Class ;
-    rdfs:subClassOf :Vehicle ;
+    rdfs:subClassOf schema:Vehicle ;
     rdfs:label "Concept Car" ;
     rdfs:comment "A prototype automobile made to showcase new styling and/or technology." .
 

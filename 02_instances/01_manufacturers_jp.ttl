@@ -1,0 +1,35 @@
+:Toyota a :Manufacturer ;
+    rdfs:label "Toyota" ;
+    :name "Toyota Motor Corporation" ;
+    :founded "1937-08-28"^^xsd:date ;
+    :headquarters "Toyota City, Japan" .
+
+:Honda a :Manufacturer ;
+    rdfs:label "Honda" ;
+    :name "Honda Motor Company" ;
+    :founded "1948-09-24"^^xsd:date ;
+    :headquarters "Tokyo, Japan" .
+
+:Nissan a :Manufacturer ;
+    rdfs:label "Nissan" ;
+    :name "Nissan Motor Company" ;
+    :founded "1933-12-26"^^xsd:date ;
+    :headquarters "Yokohama, Japan" .
+
+:Mazda a :Manufacturer ;
+    rdfs:label "Mazda" ;
+    :name "Mazda Motor Corporation" ;
+    :founded "1920-01-30"^^xsd:date ;
+    :headquarters "Hiroshima, Japan" .
+
+:Subaru a :Manufacturer ;
+    rdfs:label "Subaru" ;
+    :name "Subaru Corporation" ;
+    :founded "1953-07-15"^^xsd:date ;
+    :headquarters "Tokyo, Japan" .
+
+:Mitsubishi a :Manufacturer ;
+    rdfs:label "Mitsubishi" ;
+    :name "Mitsubishi Motors" ;
+    :founded "1970-04-22"^^xsd:date ;
+    :headquarters "Tokyo, Japan" .

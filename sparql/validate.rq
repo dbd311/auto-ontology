@@ -1,6 +1,7 @@
+PREFIX : <http://automobile.org/auto#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX : <http://automobile.org/auto#>
+PREFIX schema: <https://schema.org/>
 
 # Check for undefined classes
 SELECT DISTINCT ?class WHERE {
@@ -10,6 +11,6 @@ SELECT DISTINCT ?class WHERE {
 
 # Verify all vehicles have engines
 SELECT ?vehicle WHERE {
-  ?vehicle a :Vehicle .
+  ?vehicle a schema:Vehicle .
   FILTER NOT EXISTS { ?vehicle :hasEngine ?engine }
 }

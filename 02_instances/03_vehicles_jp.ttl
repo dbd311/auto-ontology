@@ -1,0 +1,59 @@
+:Toyota_Supra a :SportsCar ;
+    :modelName "Supra" ;
+    :productionYear "2019"^^xsd:gYear ;
+    :hasEngine :Toyota_BMW_B58 ;
+    :hasManufacturer :Toyota .
+
+:Toyota_Prius a :HybridVehicle ;
+    :modelName "Prius" ;
+    :productionYear "1997"^^xsd:gYear ;
+    :hasEngine :Toyota_HybridSystem ;
+    :hasManufacturer :Toyota .
+
+:Honda_NSX a :Supercar ;
+    :modelName "NSX" ;
+    :productionYear "2016"^^xsd:gYear ;
+    :hasEngine :Honda_TwinTurboV6_Hybrid ;
+    :hasManufacturer :Honda .
+
+:Honda_Civic_Type_R a :HotHatch ;
+    :modelName "Civic Type R" ;
+    :productionYear "2017"^^xsd:gYear ;
+    :hasEngine :Honda_TurbochargedI4 ;
+    :hasManufacturer :Honda .
+
+:Nissan_GT_R a :SportsCar ;
+    :modelName "GT-R" ;
+    :productionYear "2007"^^xsd:gYear ;
+    :hasEngine :Nissan_VR38DETT ;
+    :hasManufacturer :Nissan .
+
+:Nissan_Leaf a :ElectricVehicle ;
+    :modelName "Leaf" ;
+    :productionYear "2010"^^xsd:gYear ;
+    :hasEngine :Nissan_ElectricMotor ;
+    :hasManufacturer :Nissan .
+
+:Mazda_RX_7 a :SportsCar ;
+    :modelName "RX-7" ;
+    :productionYear "1978"^^xsd:gYear ;
+    :hasEngine :Mazda_Rotary ;
+    :hasManufacturer :Mazda .
+
+:Mazda_MX_5 a :Roadster ;
+    :modelName "MX-5 Miata" ;
+    :productionYear "1989"^^xsd:gYear ;
+    :hasEngine :Mazda_SkyactivI4 ;
+    :hasManufacturer :Mazda .
+
+:Subaru_WRX_STI a :RallyCar ;
+    :modelName "WRX STI" ;
+    :productionYear "1994"^^xsd:gYear ;
+    :hasEngine :Subaru_BoxerTurbo ;
+    :hasManufacturer :Subaru .
+
+:Subaru_Solterra a :ElectricVehicle ;
+    :modelName "Solterra" ;
+    :productionYear "2022"^^xsd:gYear ;
+    :hasEngine :Subaru_Toyota_EVPlatform ;
+    :hasManufacturer :Subaru .

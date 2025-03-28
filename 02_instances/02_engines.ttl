@@ -137,3 +137,128 @@
     :fuelType "Petrol-Electric" ;
     :hasTurbocharger true ;
     :manufacturedBy :Renault .
+
+
+# Hyundai/Kia Turbocharged Engines
+:Hyundai_Theta_II a :GasolineEngine ;
+    :engineName "Theta II" ;
+    :engineType "Turbocharged I4" ;
+    :displacement "2.0L" ;
+    :usedIn :Hyundai_Sonata, :Kia_Optima .
+
+:Hyundai_Smartstream_G1.6T a :GasolineEngine ;
+    :engineName "Smartstream G1.6T" ;
+    :engineType "Turbocharged I4" ;
+    :displacement "1.6L" ;
+    :usedIn :Hyundai_Tucson, :Kia_Sportage .
+
+# Genesis V6 (Luxury)
+:Genesis_Lambda_II_V6 a :GasolineEngine ;
+    :engineName "Lambda II V6" ;
+    :engineType "Naturally Aspirated V6" ;
+    :displacement "3.8L" ;
+    :usedIn :Genesis_G80 .
+
+# Electric/Hydrogen (Future Tech)
+:Hyundai_ElectricMotor a :ElectricMotor ;
+    :engineName "Hyundai E-GMP" ;
+    :powerOutput "225 kW" ;
+    :usedIn :Hyundai_Ioniq_5, :Kia_EV6 .
+
+:Hyundai_HydrogenFuelCell a :HydrogenEngine ;
+    :engineName "NEXO Fuel Cell" ;
+    :powerOutput "161 hp" ;
+    :usedIn :Hyundai_NEXO .
+
+:Kia_Stinger a :SportsSedan ;
+    :modelName "Stinger" ;
+    :productionYear "2017"^^xsd:gYear ;
+    :hasEngine :Kia_TwinTurboV6 ;
+    :hasManufacturer :Kia .
+
+:Kia_EV6 a :ElectricVehicle ;
+    :modelName "EV6" ;
+    :productionYear "2021"^^xsd:gYear ;
+    :hasEngine :Kia_ElectricMotor ;
+    :hasManufacturer :Kia .
+    
+:Genesis_G90 a :LuxurySedan ;
+    :modelName "G90" ;
+    :productionYear "2016"^^xsd:gYear ;
+    :hasEngine :Genesis_TwinTurboV6 ;
+    :hasManufacturer :Genesis .
+
+:Genesis_X_Concept a :ConceptCar ;
+    :modelName "X Concept" ;
+    :productionYear "2021"^^xsd:gYear ;
+    :hasEngine :Genesis_ElectricMotor ;
+    :hasManufacturer :Genesis .
+
+
+# Legendary Toyota Engines
+:Toyota_2JZ a :GasolineEngine ;
+    :engineName "2JZ-GTE" ;
+    :engineType "Turbocharged I6" ;
+    :displacement "3.0L" ;
+    :usedIn :Toyota_Supra_MK4 .
+
+:Toyota_BMW_B58 a :GasolineEngine ;
+    :engineName "B58" ;  # Co-developed with BMW
+    :engineType "Turbocharged I6" ;
+    :displacement "3.0L" ;
+    :usedIn :Toyota_Supra, :BMW_Z4 .
+
+:Toyota_HybridSystem a :HybridEngine ;
+    :engineName "THS II" ;
+    :engineType "Hybrid Synergy Drive" ;
+    :usedIn :Toyota_Prius, :Toyota_Camry_Hybrid .
+
+# High-Revving Honda Engines
+:Honda_K20C1 a :GasolineEngine ;
+    :engineName "K20C1" ;
+    :engineType "Turbocharged I4" ;
+    :displacement "2.0L" ;
+    :usedIn :Honda_Civic_Type_R .
+
+:Honda_TwinTurboV6_Hybrid a :HybridEngine ;
+    :engineName "JNC1" ;
+    :engineType "Twin-Turbo V6 Hybrid" ;
+    :displacement "3.5L" ;
+    :usedIn :Honda_NSX .
+
+# Nissan Performance Engines
+:Nissan_VR38DETT a :GasolineEngine ;
+    :engineName "VR38DETT" ;
+    :engineType "Twin-Turbo V6" ;
+    :displacement "3.8L" ;
+    :usedIn :Nissan_GT_R .
+
+:Nissan_ElectricMotor a :ElectricMotor ;
+    :engineName "e-Powertrain" ;
+    :powerOutput "160 kW" ;
+    :usedIn :Nissan_Leaf .
+
+# Subaru Boxer Engines
+:Subaru_BoxerTurbo a :GasolineEngine ;
+    :engineName "EJ257" ;
+    :engineType "Turbocharged Flat-4" ;
+    :displacement "2.5L" ;
+    :usedIn :Subaru_WRX_STI .
+
+:Subaru_Toyota_EVPlatform a :ElectricMotor ;
+    :engineName "e-Subaru Global Platform" ;
+    :powerOutput "150 kW" ;
+    :usedIn :Subaru_Solterra .
+
+# Mazda Rotary & Skyactiv
+:Mazda_Rotary a :GasolineEngine ;
+    :engineName "13B-REW" ;
+    :engineType "Twin-Rotor Wankel" ;
+    :displacement "1.3L (Equivalent)" ;
+    :usedIn :Mazda_RX_7 .
+
+:Mazda_SkyactivI4 a :GasolineEngine ;
+    :engineName "Skyactiv-G 2.5L" ;
+    :engineType "Naturally Aspirated I4" ;
+    :displacement "2.5L" ;
+    :usedIn :Mazda_MX_5 .

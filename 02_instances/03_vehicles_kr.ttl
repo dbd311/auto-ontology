@@ -1,0 +1,35 @@
+:Hyundai_Ioniq_5 a :ElectricVehicle ;
+    :modelName "Ioniq 5" ;
+    :productionYear "2021"^^xsd:gYear ;
+    :hasEngine :Hyundai_ElectricMotor ;
+    :hasManufacturer :Hyundai .
+
+:Hyundai_N_Vision_74 a :ConceptCar ;
+    :modelName "N Vision 74" ;
+    :productionYear "2022"^^xsd:gYear ;
+    :hasEngine :Hyundai_HydrogenFuelCell ;
+    :hasManufacturer :Hyundai .
+
+:Kia_Stinger a :SportsSedan ;
+    :modelName "Stinger" ;
+    :productionYear "2017"^^xsd:gYear ;
+    :hasEngine :Kia_TwinTurboV6 ;
+    :hasManufacturer :Kia .
+
+:Kia_EV6 a :ElectricVehicle ;
+    :modelName "EV6" ;
+    :productionYear "2021"^^xsd:gYear ;
+    :hasEngine :Kia_ElectricMotor ;
+    :hasManufacturer :Kia .
+
+:Genesis_G90 a :LuxurySedan ;
+    :modelName "G90" ;
+    :productionYear "2016"^^xsd:gYear ;
+    :hasEngine :Genesis_TwinTurboV6 ;
+    :hasManufacturer :Genesis .
+
+:Genesis_X_Concept a :ConceptCar ;
+    :modelName "X Concept" ;
+    :productionYear "2021"^^xsd:gYear ;
+    :hasEngine :Genesis_ElectricMotor ;
+    :hasManufacturer :Genesis .

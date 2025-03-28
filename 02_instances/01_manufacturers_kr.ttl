@@ -1,0 +1,17 @@
+:Hyundai a :Manufacturer ;
+    rdfs:label "Hyundai" ;
+    :name "Hyundai Motor Company" ;
+    :founded "1967-12-29"^^xsd:date ;
+    :headquarters "Seoul, South Korea" .
+
+:Kia a :Manufacturer ;
+    rdfs:label "Kia" ;
+    :name "Kia Corporation" ;
+    :founded "1944-12-01"^^xsd:date ;
+    :headquarters "Seoul, South Korea" .
+
+:Genesis a :Manufacturer ;
+    rdfs:label "Genesis" ;
+    :name "Genesis Motor" ;
+    :founded "2015-11-01"^^xsd:date ;
+    :headquarters "Seoul, South Korea" .
