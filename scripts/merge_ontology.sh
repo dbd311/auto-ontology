@@ -24,6 +24,9 @@ done
 # Download Schema.org ontology in Turtle format (if not present)
 SCHEMA_FILE="$INPUT_DIR/imports/schema.ttl"
 if [ ! -f "$SCHEMA_FILE" ]; then
+  if [ ! -d "$INPUT_DIR/imports" ]; then
+    mkdir -p "$INPUT_DIR/imports"
+  fi  
   echo "Downloading Schema.org ontology..."
   wget -q https://schema.org/version/latest/schemaorg-current-https.ttl -O "$SCHEMA_FILE" || {
     echo "Error: Failed to download Schema.org ontology" >&2
