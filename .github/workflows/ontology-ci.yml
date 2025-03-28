@@ -60,15 +60,43 @@ jobs:
     - name: Run ROBOT verify
       id: robot_verify
       run: |
+        set -euo pipefail
+    
+        # Create necessary directories
+        mkdir -p imports validation-reports/verify
+    
+        # Download Schema.org ontology to imports folder if not present
+        if [ ! -f imports/schema.ttl ]; then
+          echo "Downloading Schema.org ontology..."
+          wget -q --timeout=30 https://schema.org/version/latest/schemaorg-current-https.ttl -O imports/schema.ttl || {
+            echo "::error::Failed to download Schema.org ontology"
+            exit 1
+          }
+        fi
+    
+        # Create catalog file to map schema.org URI to local file
+        cat > catalog-v001.xml << 'EOL'
+        <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+          <uri name="https://schema.org/" uri="imports/schema.ttl"/>
+          <uri name="https://schema.org/version/latest/schemaorg-current-https.ttl" uri="imports/schema.ttl"/>
+        </catalog>
+        EOL
+    
+        # Run validation if queries exist
         if [ -d sparql/validation_queries ] && [ -n "$(find sparql/validation_queries -maxdepth 1 -name '*.rq' -print -quit)" ]; then
-          mkdir -p validation-reports/verify
-          robot verify --input automobile_merged.ttl \
-            --queries sparql/validation_queries/*.rq \
-            --output-dir validation-reports/verify/ || (echo "::error::ROBOT verify encountered issues"; exit 1)
+          echo "Running ROBOT verify with queries..."
+          robot verify \
+            --input automobile_merged.ttl \
+            --catalog catalog-v001.xml \
+            --queries "sparql/validation_queries/*.rq" \
+            --output-dir validation-reports/verify/ || {
+              echo "::error::ROBOT verify encountered issues"
+              exit 1
+            }
         else
           echo "::notice::No validation queries found in sparql/validation_queries/"
         fi
-
+      
     - name: Process validation results
       run: |
         echo "Validation artifacts:"
