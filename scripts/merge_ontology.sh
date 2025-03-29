@@ -62,23 +62,7 @@ for dir in 01_core 02_instances 03_axioms; do
   done
 done
 
-# Validation
-if command -v riot >/dev/null; then
-    echo -e "\nValidating ontology..."
-    if riot --validate "$OUTPUT_FILE"; then
-        echo "Validation successful"
-    else
-        echo "Validation failed - trying offline validation..."
-        # Fallback to basic syntax check without imports
-        if riot --check "$OUTPUT_FILE"; then
-            echo "Syntax is valid (imports not checked)"
-        else
-            echo "Syntax validation failed" >&2
-            exit 1
-        fi
-    fi
-else
-    echo "ERROR: riot is missing. Install Apache Jena for validation." >&2
-    echo "Hint: apt-get install jena or brew install jena" >&2
-    exit 1
-fi
+# Ontology Validation
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+bash $SCRIPT_DIR/validate_ontology.sh $OUTPUT_FILE 

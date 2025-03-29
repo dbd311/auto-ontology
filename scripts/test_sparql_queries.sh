@@ -54,14 +54,13 @@ if [ "$total_queries" -eq 0 ]; then
 fi
 
 echo -e "${GREEN}Starting processing of $total_queries queries...${NC}"
-
 # Process files - simplified loop
 for ((i=0; i<${#queries[@]}; i++)); do
     query="${queries[$i]}"
-    ((processed++))
+    processed=$((processed + 1))
     query_name=$(basename "$query")
     output_file="$OUTPUT_DIR/${query_name%.*}.json"
-    
+   
     echo -e "[$processed/$total_queries] Processing: ${GREEN}$query_name${NC}"
     echo "[$processed/$total_queries] Processing: $query_name" >> "$LOG_FILE"
     
@@ -69,7 +68,7 @@ for ((i=0; i<${#queries[@]}; i++)); do
         echo -e "${RED}ERROR: Failed $query_name${NC}" >&2
         echo "ERROR: Failed $query_name" >> "$LOG_FILE"
         rm -f "$output_file"
-        ((errors++))
+        error=$((errors + 1))
         continue
     fi
     
