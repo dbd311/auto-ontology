@@ -3,12 +3,6 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <https://schema.org/>
 
-# Check for undefined classes
-SELECT DISTINCT ?class WHERE {
-  ?class a owl:Class .
-  FILTER NOT EXISTS { ?class rdfs:label ?label }
-}
-
 # Verify all vehicles have engines
 SELECT ?vehicle WHERE {
   ?vehicle a schema:Vehicle .

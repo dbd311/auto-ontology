@@ -8,7 +8,7 @@ on:
 
 jobs:
   ontology-validation:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # GitHub-hosted runner is under Ubuntu
     container: 
       image: stain/jena
       options: --user root

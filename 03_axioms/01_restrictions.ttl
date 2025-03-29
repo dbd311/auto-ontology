@@ -1,7 +1,7 @@
 :SportsCar a owl:Class ;
     owl:equivalentClass [
         owl:intersectionOf (
-            :Car
+            schema:Car
             [ a owl:Restriction ;
               owl:onProperty :horsepower ;
               owl:someValuesFrom [
@@ -28,7 +28,7 @@
 :ElectricCar a owl:Class ;
     owl:equivalentClass [
         owl:intersectionOf (
-            :Car
+            schema:Car
             [ a owl:Restriction ;
               owl:onProperty :hasEngine ;
               owl:someValuesFrom :ElectricEngine

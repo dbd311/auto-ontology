@@ -1,2 +1,4 @@
 scripts/automobile_ontology.ttl
 automobile_merged.ttl
+sparql_results
+sparql_run.log
